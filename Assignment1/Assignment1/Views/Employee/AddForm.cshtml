@@ -1,0 +1,91 @@
+﻿@model Assignment1.Entity.Employee
+
+@{
+    ViewData["Title"] = "Add Employee";
+}
+
+<div class="container mt-3">
+    <h2>Add New Employee</h2>
+    <form id="addEmployeeForm" method="post" asp-action="AddEmployee" asp-controller="Employee">
+        <div class="form-group">
+            <label for="EmpName">Employee Name:</label>
+            <input type="text" class="form-control" id="EmpName" name="EmpName" />
+        </div>
+
+        <div class="form-group">
+            <label for="Email">Email:</label>
+            <input type="email" class="form-control" id="Email" name="Email" />
+        </div>
+
+        <div class="form-group">
+            <label for="Phone">Phone:</label>
+            <input type="tel" class="form-control" id="Phone" name="Phone" />
+        </div>
+
+        <div class="form-group">
+            <label for="Designation">Designation:</label>
+            <input type="text" class="form-control" id="Designation" name="Designation" />
+        </div>
+
+        <div class="form-group">
+            <label for="DeptId">Department:</label>
+            <select id="DeptId" name="DeptId" class="form-control">
+                <option value="">-- Select Department --</option>
+                @foreach (var department in ViewBag.Departments)
+                {
+                    <option value="@department.DeptId">@department.DeptName</option>
+                }
+            </select>
+        </div>
+
+        <div class="form-group mt-3">
+            <a href="javascript:void(0);" class="btn btn-primary" onclick="validateAddForm()">Add Employee</a>
+        </div>
+    </form>
+
+    <br />
+    <a href="@Url.Action("GetAll", "Employee")" class="btn btn-secondary">Employee List</a>
+</div>
+
+<script>
+    function validateAddForm() {
+        const empName = document.getElementById("EmpName").value.trim();
+        const email = document.getElementById("Email").value.trim();
+        const phone = document.getElementById("Phone").value.trim();
+        const designation = document.getElementById("Designation").value.trim();
+        const deptId = document.getElementById("DeptId").value;
+
+        if (!empName) {
+            alert("Employee Name is required.");
+            return false;
+        }
+        if (!email) {
+            alert("Email is required.");
+            return false;
+        }
+        if (!phone) {
+            alert("Phone is required.");
+            return false;
+        }
+        if (!validatePhone(phone)) {
+            alert("Please enter a valid 10-digit phone number.");
+            return false;
+        }
+        if (!designation) {
+            alert("Designation is required.");
+            return false;
+        }
+        if (!deptId) {
+            alert("Please select a department.");
+            return false;
+        }
+
+        document.getElementById("addEmployeeForm").submit();
+    }
+
+    function validatePhone(phone) {
+        const phonePattern = /^\d{10}$/;
+        return phonePattern.test(phone);
+    }
+</script>
+

@@ -1,0 +1,29 @@
+﻿@page
+@model YourNamespace.Pages.EmployeeModel
+@{
+    ViewData["Title"] = "Add Employee";
+}
+
+<body>
+    <form action="/Employee/Add" method="post">
+        <label for="id">Employee Id</label>
+        <input type="text" name="eid" required>
+
+        <label for="name">Employee Name</label>
+        <input type="text" name="name" required>
+
+        <label for="email">Email</label>
+        <input type="email" name="email" required>
+
+        <label for="phone">Phone Number</label>
+        <input type="tel" name="phone" required>
+
+        <label for="designation">Designation</label>
+        <input type="text" name="designation" required>
+
+        <label for="dId">Department Id</label>
+        <input type="text" name="dId" required>
+
+        <input type="button" value="add" />
+    </form>
+</body>

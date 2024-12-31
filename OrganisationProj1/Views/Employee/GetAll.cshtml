@@ -1,0 +1,37 @@
+﻿@using OrganisationProj1.Entity;
+<body>
+    <h1>Employee List</h1>
+    <hr />
+    <form action="">
+        <table>
+            <thead>
+                <tr>
+                    <th>EmpId</th>
+                    <th>Employee Name</th>
+                    <th>Action</th>
+                    <th>Action</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            @{
+                foreach (Employee p in Model)
+                {
+                    <tr>
+                        <td>@p.EmpId</td>
+                        <td>@p.EmpName</td>
+                        <td>
+                            <button class="btn btn-danger"><a href="/Employee/Delete/@p.EmpId">Delete</a></button>
+                        </td>
+                        <td>
+                            <button class="btn btn-info"><a href="/Employee/Details/@p.EmpId">Details</a></button>
+                        </td>
+                        <td>
+                            <button class="btn btn-primary"><a href="/Employee/EditForm/@p.EmpId">Update</a></button>
+                        </td>
+                    </tr>
+                }
+            }
+        </table>
+        <button class="btn btn-success"><a href="/Employee/AddForm">Add</a></button>
+    </form>
+</body>

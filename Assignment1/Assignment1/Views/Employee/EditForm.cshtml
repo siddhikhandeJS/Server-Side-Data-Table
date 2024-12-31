@@ -1,0 +1,87 @@
+﻿@model Assignment1.Entity.Employee
+
+<h2>Edit Employee</h2>
+
+<form id="editEmployeeForm" asp-action="Update" asp-controller="Employee" method="post">
+    <div class="form-group">
+        <label for="EmpId">Employee ID</label>
+        <input type="text" class="form-control" id="EmpId" name="EmpId" value="@Model.EmpId" readonly />
+    </div>
+    <div class="form-group">
+        <label for="EmpName">Employee Name</label>
+        <input type="text" class="form-control" id="EmpName" name="EmpName" value="@Model.EmpName" />
+    </div>
+
+    <div class="form-group">
+        <label for="Email">Email</label>
+        <input type="email" class="form-control" id="Email" name="Email" value="@Model.Email" />
+    </div>
+
+    <div class="form-group">
+        <label for="Phone">Phone</label>
+        <input type="tel" class="form-control" id="Phone" name="Phone" value="@Model.Phone" />
+    </div>
+
+    <div class="form-group">
+        <label for="Designation">Designation</label>
+        <input type="text" class="form-control" id="Designation" name="Designation" value="@Model.Designation" />
+    </div>
+
+    <div class="form-group">
+        <label for="DeptId">Department:</label>
+        <select id="DeptId" name="DeptId" class="form-control">
+            <option value="">-- Select Department --</option>
+            @foreach (var department in ViewBag.Departments)
+            {
+                <option value="@department.DeptId">@department.DeptName</option>
+            }
+        </select>
+    </div>
+
+    <a href="javascript:void(0);" class="btn btn-primary" onclick="validateEditForm()">Save Changes</a>
+    
+    <br />
+    <a href="@Url.Action("GetAll", "Employee")" class="btn btn-secondary mt-2">Back to Employee List</a>
+</form>
+
+<script>
+    function validateEditForm() {
+        const empName = document.getElementById("EmpName").value.trim();
+        const email = document.getElementById("Email").value.trim();
+        const phone = document.getElementById("Phone").value.trim();
+        const designation = document.getElementById("Designation").value.trim();
+        const deptId = document.getElementById("DeptId").value;
+
+        if (!empName) {
+            alert("Employee Name is required.");
+            return false;
+        }
+        if (!email) {
+            alert("Email is required.");
+            return false;
+        }
+        if (!phone) {
+            alert("Phone is required.");
+            return false;
+        }
+        if (!validatePhone(phone)) {
+            alert("Please enter a valid 10-digit phone number.");
+            return false;
+        }
+        if (!designation) {
+            alert("Designation is required.");
+            return false;
+        }
+        if (!deptId) {
+            alert("Please select a department.");
+            return false;
+        }
+
+        document.getElementById("editEmployeeForm").submit();
+    }
+
+    function validatePhone(phone) {
+        const phonePattern = /^\d{10}$/;
+        return phonePattern.test(phone);
+    }
+</script>

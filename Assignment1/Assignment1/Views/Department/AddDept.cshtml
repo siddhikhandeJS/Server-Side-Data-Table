@@ -1,0 +1,38 @@
+﻿@model Assignment1.Entity.Department
+
+@{
+    ViewData["Title"] = "Add Department";
+}
+
+<div class="container mt-3">
+    <h2>Add New Department</h2>
+    <form id="addDeptForm" method="post" asp-action="AddDepartment" asp-controller="Department">
+        <div class="form-group">
+            <label for="DeptName">Department Name</label>
+            <input type="text" id="DeptName" name="DeptName" class="form-control" required />
+        </div>
+
+        <div class="form-group mt-3">
+            <a href="javascript:void(0);" class="btn btn-primary" onclick="validateDepartmentForm()">Add Department</a>
+        </div>
+    </form>
+
+    <br />
+    <a href="@Url.Action("GetAllDepartments", "Department")" class="btn btn-secondary">Department List</a>
+</div>
+
+<script>
+    function validateDepartmentForm() {
+        // Get the DeptName
+        var deptName = document.getElementById("DeptName").value.trim();
+
+        // Check if the DeptName is empty
+        if (!deptName) {
+            alert("Please enter a department name.");
+            return false;
+        }
+
+        // If validation true, submit the form
+        document.getElementById("addDeptForm").submit();
+    }
+</script>

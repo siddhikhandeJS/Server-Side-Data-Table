@@ -1,0 +1,54 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model EmpDept.Models.Entities.Employee
+
+@if (Model is null)
+{
+	<p>No Employee record is found with this Id.</p>
+}
+else
+{
+	<h1>Edit Employee</h1>
+	<form method="post">
+		<div class="mt-3">
+			<label class="form-label">Employee Id</label>
+			<input type="text" class="form-control" asp-for="EmpId" readonly>
+		</div>
+
+		<div class="mt-3">
+			<label class="form-label">Employee Name</label>
+			<input type="text" class="form-control" asp-for="EmpName">
+		</div>
+
+		<div class="mt-3">
+			<label class="form-label">Email</label>
+			<input type="email" class="form-control" asp-for="Email">
+		</div>
+
+		<div class="mt-3">
+			<label class="form-label">Phone Number</label>
+			<input type="tel" class="form-control" asp-for="Phone">
+		</div>
+
+		<div class="mt-3">
+			<label class="form-label">Designation</label>
+			<input type="text" class="form-control" asp-for="Designation">
+		</div>
+
+		<div class="mt-3">
+			<label class="form-label">Department Id</label>
+			<input type="text" class="form-control" asp-for="DeptId">
+		</div>
+
+		<div class="mt-3">
+			<input type="button" class="btn btn-primary" value="Save" asp-action="Edit" asp-controller="Employees" />
+
+			<input type="button" class="btn btn-danger ms-3" asp-action="Delete" asp-controller="Employees" value="Delete"/>
+		</div>
+	</form>
+
+}
