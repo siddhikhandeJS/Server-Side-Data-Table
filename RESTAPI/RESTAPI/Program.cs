@@ -1,7 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using RESTAPI.Data;
-using RESTAPI.Repositories;
-using RESTAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,10 +9,6 @@ builder.Services.AddControllersWithViews();
 // Register the DB context for Entity Framework
 builder.Services.AddDbContext<CollectionContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
-// Register Repositories and Services
-builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
-builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 
 
 var app = builder.Build();

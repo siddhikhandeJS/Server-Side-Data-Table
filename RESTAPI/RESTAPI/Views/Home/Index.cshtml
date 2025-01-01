@@ -1,54 +1,38 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-
-}
-
-@model RESTAPI.Models.Employee
+﻿@model IEnumerable<RESTAPI.Models.Employee>
 @{
-    ViewBag.Title ="Index";
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css" />
-<script type="text/javascript" src="https://cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
-
-<div class="card shadow mb-4">
-    <div  class="card-header py-3">
-        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-            <h6 class="m-0 font-weight-bold btn btn-primary">Employees</h6>
-            <a href="@Url.Action("Action","Employees")" class="btn btn-success"><i class="fas fa-plus mr-1"></i>Create</a>
-            <a class="btn btn-primary" href="@Url.Action("Index","Employees")"><i class="fas fa-redo mr-1"></i>Reset</a>
-        </div>
-    </div>
-    <div class="card-body">
-        <div class="table-responsive">
-            <table class="table table-hover" id="myDataTable">
+<div class="container">
+    <h2 class="text-center text-success font-weight-bold">Employee Listing</h2>
+    <div class="row">
+        <div class="col-8 offset-2">
+            <table class="table table-bordered" id='dataTableData'>
                 <thead>
-                    <tr>
-                        <th scope="col">EmpID</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Phone</th>
-                        <th scope="col">Designation</th>
-                        <th scope="col">Actions</th>
+                    <tr class="text-center">
+                        <td>EmpID</td>
+                        <td>EmpName</td>
+                        <td>Email</td>
+                        <td>Phone</td>
+                        <td>Designation</td>
                     </tr>
                 </thead>
-                <tbody>
-
-                </tbody>
+                @foreach (var d in Model)
+                {
+                    <tr class="text-center">
+                        <td>@d.EmpId</td>
+                        <td>@d.EmpName</td>
+                        <td>@d.Email</td>
+                        <td>@d.Phone</td>
+                        <td>@d.Designation</td>
+                    </tr>
+                }
             </table>
         </div>
     </div>
 </div>
 
-
-<script>
-    $(document).ready(function(){
-        BindDataTable();
-    })
-
-    var BindDataTable = function(response){
-    
-    }
-
-</script>
+@section scripts {
+		<script src="~/js/datatablefile.js"></script>   
+}

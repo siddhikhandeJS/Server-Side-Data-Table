@@ -1,69 +1,75 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using RESTAPI.Data;
+﻿using Microsoft.AspNetCore.Mvc;
 using RESTAPI.DTO;
 using RESTAPI.Models;
-using RESTAPI.Services;
 
 namespace RESTAPI.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class EmployeeController : ControllerBase
+    
+    public class EmployeeController : Controller
     {
-        //Each action method is mapped to HTTP Request type
-        private readonly IEmployeeService service;
-
-        public EmployeeController(IEmployeeService service)
+        public ActionResult Index()
         {
-            this.service = service;
+            return View();
         }
+        //public JsonResult GetEmployeeRecord(DataTablesParam param)
+        //{
+        //    List<EmployeeDto> List = new List<EmployeeDto>();
+        //    int pageNo = 1;
+        //    if (param.iDisplayStart > param.iDisplayLength)
+        //    {
+        //        pageNo = (param.iDisplayStart / param.iDisplayLength) + 1;
 
-        //action method
-        [HttpGet]
-        [Route("api/employees")]
-        public IActionResult GetEmployees()
-        {
-            //invoke service method to resturn employees
-            // send received data as message to outside world
-            try
-            {
-                var message = service.GetEmployees();
-                if (message == null)
-                {
-                    return NotFound();
-                }
-                return Ok(message);
-            }
-            catch (Exception)
-            {
-                return BadRequest();
-            }
-        }
+        //    }
 
-        [HttpPost]
-        [Route("api/employees")]
-        public IActionResult Insert([FromBody] Employee employee)
-        {
-            try
-            {
+        //    int totalCount = 0;
 
-                bool status = service.Insert(employee);
-                if (status == false)
-                {
-                    return BadRequest();
-                }
-                else
-                {
-                    return Ok();
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-                return BadRequest();
-            }
-        }
+        //    if (param.sSearch != null)
+        //    {
+        //        totalCount = db.Employees.Where(x => x.EmpName.ToLower().Contains(param.sSearch.ToLower())
+        //        || x.Email.Contains(param.sSearch.ToLower())
+        //        || x.Phone.Contains(param.sSearch.ToString())
+        //        || x.Designation.ToLower().Contains(param.sSearch.ToLower())
+        //        ).Count();
+
+        //        List = db.Employees.Where(x => x.EmpName.ToLower().Contains(param.sSearch.ToLower())
+        //        || x.Email.Contains(param.sSearch.ToLower())
+        //        || x.Phone.Contains(param.sSearch.ToString())
+        //        || x.Designation.ToLower().Contains(param.sSearch.ToLower())
+        //        ).OrderBy(x => x.EmpId).Skip((pageNo - 1) * param.iDisplayLength).Take(param.iDisplayLength)
+        //        .Select(x => new EmployeeDto
+        //        {
+        //            EmpName = x.EmpName,
+        //            Email = x.Email,
+        //            Phone = x.Phone,
+        //            Designation = x.Designation
+        //        }).ToList();
+        //    }
+        //    else
+        //    {
+        //        totalCount = db.Employees.Count();
+        //        List = db.Employees.OrderBy(x => x.EmpId).Skip((pageNo - 1) * param.iDisplayLength).Take(param.iDisplayLength)
+        //            .Select(x => new EmployeeDto
+        //            {
+        //                EmpName = x.EmpName,
+        //                Email = x.Email,
+        //                Phone = x.Phone,
+        //                Designation = x.Designation
+        //            }).ToList();
+        //    }
+
+
+        //    //attributes names should match in return json
+        //    return Json(new
+        //    {
+        //        aaData = List,
+        //        sEcho = param.sEcho,
+        //        iTotalDisplayRecords = totalCount,
+        //        iTotalRecords = totalCount
+
+        //    }, JsonRequestBehavior.AllowGet);
+        //}
 
     }
+
 }
+
