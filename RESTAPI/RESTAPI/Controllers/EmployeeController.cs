@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RESTAPI.Data;
 using RESTAPI.DTO;
 using RESTAPI.Models;
 
@@ -7,9 +8,16 @@ namespace RESTAPI.Controllers
     
     public class EmployeeController : Controller
     {
+        private readonly CollectionContext context;
+
+        public EmployeeController(CollectionContext context)
+        {
+            this.context = context;
+        }
         public ActionResult Index()
         {
-            return View();
+            var data = context.Employees.Take(50).ToList();
+            return View(data);
         }
         //public JsonResult GetEmployeeRecord(DataTablesParam param)
         //{

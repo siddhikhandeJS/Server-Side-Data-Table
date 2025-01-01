@@ -1,69 +1,41 @@
-﻿
+﻿@model IEnumerable<RESTAPI.Models.Employee>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
-@* <script src="~/lib/jquery/dist/jquery.min.js"></script> *@
-@* <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css"> *@
-@* <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script> *@
-@* <style type="text/css"> *@
-@*     #tbllist_filter{ *@
-@*         margin-bottom:1%; *@
-@*     } *@
-@* </style> *@
-@* <script type="text/javascript"> *@
-@*     var js = jQuery.noConflict(true); *@
-@*     js(document).ready(function() { *@
-@*         //js('#tbllist').DataTable({ *@
+<div class="container">
+    @* <a class="btn btn-sm btn-primary m-2" asp-controller="Employee"></a> *@
+    <h2 class="text-center text-success font-weight-bold">Employee Listing</h2>
+    <div class="row">
+        <div class="col-8 offset-2">
+            <table class="table table-bordered" id='dataTableData'>
+                <thead>
+                    <tr class="text-center">
+                        <td>EmpID</td>
+                        <td>EmpName</td>
+                        <td>Email</td>
+                        <td>Phone</td>
+                        <td>Designation</td>
+                    </tr>
+                </thead>
 
-@*         //}); *@
-@*         LoadListing(); *@
-@*     }); *@
-@*     function FunEdit(element) { *@
-@*         var code = $(element).closest('tr').find('input[type=hidden]').val(); *@
-@*        window.location.href = "/employee/Edit?code="+code; *@
-@*     } *@
+                @foreach (var d in Model)
+                {
+                    <tr class="text-center">
+                        <td>@d.EmpId</td>
+                        <td>@d.EmpName</td>
+                        <td>@d.Email</td>
+                        <td>@d.Phone</td>
+                        <td>@d.Designation</td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>
 
-@*     function FunRemove(element) { *@
-@*         var code = $(element).closest('tr').find('input[type=hidden]').val(); *@
-@*         if (confirm("do you want to remove?")) { *@
-@*             $.ajax({ *@
-@*                 type: "POST", *@
-@*                 url: "/Employee/Remove", *@
-@*                 data: { code: code }, *@
-@*                 success: function(data) { *@
-@*                     if (data == 'pass') { *@
-@*                         alert('Removed successfully.'); *@
-@*                         window.location.reload(); *@
-@*                     } else { *@
-@*                         alert("Failure due to :" +data) *@
-@*                     } *@
-@*                 }, *@
-@*                 failure: function(err) { *@
-
-@*                 } *@
-@*             }); *@
-@*         } *@
-@*     } *@
-@*     function LoadListing() { *@
-@*         var empdata = []; *@
-@*         $.ajax({ *@
-@*             type: "POST", *@
-@*             url: "/Employee/GetAll", *@
-@*             async: false, *@
-@*             success: function(data) { *@
-@*                 $.each(data, function(key, value) { *@
-@*                     var editbtn = "<a onclick='FunEdit(this)' class='btn btn-primary'>Edit</a>"; *@
-@*                     var removebtn = "<a onclick='FunRemove(this)' class='btn btn-danger'>Remove</a>"; *@
-@*                     var hdn = "<input type='hidden' value=" + value.code + " />"; *@
-@*                     var action = editbtn +" | "+ removebtn + hdn; *@
-@*                     empdata.push([value.code, value.name, value.email, value.phone, value.designation,action]) *@
-@*                 }) *@
-@*             }, *@
-@*             failure: function(err) { *@
-
-@*             } *@
-@*         }); *@
-@*         js('#tbllist').DataTable({ *@
-@*             data: empdata *@
-@*         }); *@
-@*     } *@
-
-@* </script> *@
+@section scripts {
+    <script src="~/js/datatablefile.js"></script>
+    <script src="//cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css"></script>
+}
