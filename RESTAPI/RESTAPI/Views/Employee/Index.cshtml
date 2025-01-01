@@ -1,5 +1,4 @@
-﻿@model IEnumerable<RESTAPI.Models.Employee>
-@{
+﻿@{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -20,16 +19,16 @@
                     </tr>
                 </thead>
 
-                @foreach (var d in Model)
-                {
-                    <tr class="text-center">
-                        <td>@d.EmpId</td>
-                        <td>@d.EmpName</td>
-                        <td>@d.Email</td>
-                        <td>@d.Phone</td>
-                        <td>@d.Designation</td>
-                    </tr>
-                }
+                @* @foreach (var d in Model) *@
+                @* { *@
+                @*     <tr class="text-center"> *@
+                @*         <td>@d.EmpId</td> *@
+                @*         <td>@d.EmpName</td> *@
+                @*         <td>@d.Email</td> *@
+                @*         <td>@d.Phone</td> *@
+                @*         <td>@d.Designation</td> *@
+                @*     </tr> *@
+                @* } *@
             </table>
         </div>
     </div>
@@ -37,5 +36,4 @@
 
 @section scripts {
     <script src="~/js/datatablefile.js"></script>
-    <script src="//cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css"></script>
 }
