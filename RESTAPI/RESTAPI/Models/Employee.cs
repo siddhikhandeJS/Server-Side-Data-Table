@@ -22,12 +22,12 @@ namespace RESTAPI.Models
         [Required]
         public string Designation { get; set; }
 
-        [Required]
-        public int DeptId { get; set; }
+        //[Required]
+        //public int DeptId { get; set; }
 
         // Define DeptId as a foreign key for the Department entity
         //[ForeignKey("DeptId")]
-        public virtual Department Department { get; set; }
+        //public virtual Department Department { get; set; }
 
     }
 }

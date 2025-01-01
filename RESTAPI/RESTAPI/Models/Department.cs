@@ -12,6 +12,6 @@ namespace RESTAPI.Models
         [Required]
         public string DeptName { get; set; }
 
-        public virtual List<Employee> Employee { get; set; }
+       // public virtual List<Employee> Employee { get; set; }
     }
 }

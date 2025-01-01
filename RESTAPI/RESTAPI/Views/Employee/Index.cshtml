@@ -1,13 +1,15 @@
 ﻿@{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Employee Table";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
+
 <div class="container">
-    @* <a class="btn btn-sm btn-primary m-2" asp-controller="Employee"></a> *@
-    <h2 class="text-center text-success font-weight-bold">Employee Listing</h2>
+     <h2 class="text-center text-success font-weight-bold">Employee Listing</h2>
     <div class="row">
         <div class="col-8 offset-2">
+            <a class="btn btn-sm btn-primary m-2" id="btnAddEmployee">Add New</a>
             <table class="table table-bordered" id='dataTableData'>
                 <thead>
                     <tr class="text-center">
@@ -16,6 +18,7 @@
                         <td>Email</td>
                         <td>Phone</td>
                         <td>Designation</td>
+                        <td>Action</td>
                     </tr>
                 </thead>
 
@@ -30,6 +33,45 @@
                 @*     </tr> *@
                 @* } *@
             </table>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade modal" id="EmployeeModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="text-info modal-title">Add Employee</h1>
+                <button class="close text-danger" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body"></div>
+            <form method="post">
+                <div class="form-group">
+                    <label>Employee Id</label>
+                    <input type="text" class="form-control" id="EmpId" disabled="disabled" />
+                </div>
+                <div class="form-group">
+                    <label>Employee Name</label>
+                    <input type="text" placeholder="Enter Name" class="form-control" id="EmpName" autocomplete="off"/>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" placeholder="Enter Email" class="form-control" id="Email" autocomplete="off"/>
+                </div>
+                <div class="form-group">
+                    <label>Phone</label>
+                    <input type="tel" placeholder="Enter Phone" class="form-control" id="Phone" autocomplete="off"/>
+                </div>
+                <div class="form-group">
+                    <label>Designation</label>
+                    <input type="text" placeholder="Enter Designation" class="form-control" id="Designation" autocomplete="off"/>
+                </div>
+            </form>
+            <div class="modal-footer">
+                <button class="btn btn-primary" onclick="AddEmployee();" id="AddEmployee">Save</button>
+                <button class="btn btn-warning" onclick="" style="display:none" id="btnUpdate">Update</button>
+                <button class="btn btn-danger btn-default" data-dismiss="modal">Close</button>
+            </div>
         </div>
     </div>
 </div>
