@@ -6,12 +6,12 @@ namespace RESTAPI.Models
     public class Department
     {
         [Key]
-        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)] // Specifies auto-increment
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)] // Specifies auto-increment
         public int DeptId { get; set; }
 
         [Required]
         public string DeptName { get; set; }
 
-       // public virtual List<Employee> Employee { get; set; }
+       //public virtual List<Employee> Employee { get; set; }
     }
 }
