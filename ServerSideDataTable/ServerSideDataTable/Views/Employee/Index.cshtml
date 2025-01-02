@@ -1,0 +1,77 @@
+﻿@{
+    ViewData["Title"] = "Employee Management";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h2>Employee Management</h2>
+    <button id="btnAddEmployee" class="btn btn-primary mb-3">Add Employee</button>
+    <table id="employeeTable" class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Emp ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Designation</th>
+                <th>Department</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+<!-- Employee Modal -->
+<div id="EmployeeModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="employeeModalTitle">Add Employee</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="employeeForm">
+                    <input type="hidden" id="EmpId">
+                    <div class="form-group">
+                        <label for="EmpName">Name</label>
+                        <input type="text" id="EmpName" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="Email">Email</label>
+                        <input type="email" id="Email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="Phone">Phone</label>
+                        <input type="text" id="Phone" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="Designation">Designation</label>
+                        <input type="text" id="Designation" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="DeptId">Department</label>
+                        <select id="DeptId" class="form-control" required>
+                            <option value="">Select Department</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnSaveEmployee" class="btn btn-success">Save</button>
+                <button type="button" id="btnUpdateEmployee" class="btn btn-primary d-none">Update</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css" />
+<script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
+
+
+@section Scripts {
+	<script src="~/js/datatablefile.js"></script>
+}
