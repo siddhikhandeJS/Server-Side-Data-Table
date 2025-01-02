@@ -25,8 +25,17 @@ namespace RESTAPI.Controllers
         }
 
         [HttpPost]
-        public JsonResult AddEmployee(Employee employee)
+        public JsonResult AddEmployee([FromBody] Employee employee)
         {
+            // Validate if any field is empty
+            if (string.IsNullOrWhiteSpace(employee.EmpName) ||
+                string.IsNullOrWhiteSpace(employee.Email) ||
+                string.IsNullOrWhiteSpace(employee.Phone) ||
+                string.IsNullOrWhiteSpace(employee.Designation))
+            {
+                return new JsonResult("All fields are required.");
+            }
+
             var emp = new Employee()
             {
                 EmpName = employee.EmpName,
@@ -36,7 +45,8 @@ namespace RESTAPI.Controllers
             };
             context.Employees.Add(emp);
             context.SaveChanges();
-            return new JsonResult("Data is added");
+            return new JsonResult("Data added successfully");
+   
         }
 
         [HttpDelete]
@@ -48,11 +58,19 @@ namespace RESTAPI.Controllers
             return new JsonResult("Employee Deleted");
         }
 
-        [HttpGet]
+        
         public JsonResult Edit(int empId)
         {
-            var employee = context.Employees.Find(empId);
+            var employee = context.Employees.Where(e => e.EmpId == empId).SingleOrDefault();
             return new JsonResult(employee);
+        }
+
+        [HttpPost]
+        public JsonResult Update(Employee employee)
+        {
+            context.Employees.Update(employee);
+            context.SaveChanges();
+            return new JsonResult("Record Updated!");
         }
     }
 }

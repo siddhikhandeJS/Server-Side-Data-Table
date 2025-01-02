@@ -1,38 +1,49 @@
-﻿@model Assignment1.Entity.Department
+﻿@model IEnumerable<Department>
 
-@{
-    ViewData["Title"] = "Add Department";
-}
-
-<div class="container mt-3">
-    <h2>Add New Department</h2>
-    <form id="addDeptForm" method="post" asp-action="AddDepartment" asp-controller="Department">
-        <div class="form-group">
-            <label for="DeptName">Department Name</label>
-            <input type="text" id="DeptName" name="DeptName" class="form-control" required />
-        </div>
-
-        <div class="form-group mt-3">
-            <a href="javascript:void(0);" class="btn btn-primary" onclick="validateDepartmentForm()">Add Department</a>
-        </div>
-    </form>
-
-    <br />
-    <a href="@Url.Action("GetAllDepartments", "Department")" class="btn btn-secondary">Department List</a>
+<div class="container">
+    <h2>Department List</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var department in Model)
+            {
+                <tr>
+                    <td>@department.Id</td>
+                    <td>@department.Name</td>
+                    <td>
+                        <button type="button" class="btn btn-danger btn-sm" onclick="deleteDepartment(@department.Id)">Delete</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>
 
 <script>
-    function validateDepartmentForm() {
-        // Get the DeptName
-        var deptName = document.getElementById("DeptName").value.trim();
-
-        // Check if the DeptName is empty
-        if (!deptName) {
-            alert("Please enter a department name.");
-            return false;
+    function deleteDepartment(id) {
+        if (confirm("Are you sure you want to delete this department?")) {
+            $.ajax({
+                url: '/Department/DeleteDepartment',
+                type: 'DELETE',
+                data: { id: id },
+                success: function (response) {
+                    if (response.success) {
+                        alert(response.message);
+                        location.reload(); // Reload the page to reflect changes
+                    } else {
+                        alert("Error: " + response.message);
+                    }
+                },
+                error: function () {
+                    alert("An error occurred while deleting the department.");
+                }
+            });
         }
-
-        // If validation true, submit the form
-        document.getElementById("addDeptForm").submit();
     }
 </script>

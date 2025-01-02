@@ -23,5 +23,15 @@ namespace Assignment1.Service
         {
             return departmentRepository.GetAllDepartments();
         }
+        public Department GetDepartmentById(int id)
+        {
+            return departmentRepository.GetDepartmentById(id);
+        }
+
+        public void DeleteDepartment(int id)
+        {
+            departmentRepository.DeleteDepartment(id);
+            departmentRepository.Save();
+        }
     }
 }

@@ -31,5 +31,18 @@ namespace Assignment1.Controllers
             var departments = departmentService.GetAllDepartments();
             return View(departments);
         }
-    }
+
+        [HttpDelete]
+        public JsonResult DeleteDepartment(int id)
+        {
+            try
+            {
+                departmentService.DeleteDepartment(id);
+                return Json(new { success = true, message = "Department deleted successfully." });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = ex.Message });
+            }
+        }
 }

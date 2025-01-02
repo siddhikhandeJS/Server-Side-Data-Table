@@ -4,15 +4,12 @@
 }
 
 
-
-<div class="container">
-     <h2 class="text-center text-success font-weight-bold">Employee Listing</h2>
-    <div class="row">
-        <div class="col-8 offset-2">
-            <a class="btn btn-sm btn-primary m-2" id="btnAddEmployee">Add New</a>
-            <table class="table table-bordered" id='dataTableData'>
-                <thead>
-                    <tr class="text-center">
+    <h2 class="text-center text-success font-weight-bold">Employee Listing</h2>
+    <a class="btn btn-sm btn-primary m-2" id="btnAddEmployee">Add Employee</a>
+<!-- Employee Table -->
+<table class="table table-bordered" id='dataTableData'>
+     <thead>
+        <tr class="text-center"">
                         <td>EmpID</td>
                         <td>EmpName</td>
                         <td>Email</td>
@@ -32,21 +29,18 @@
                 @*         <td>@d.Designation</td> *@
                 @*     </tr> *@
                 @* } *@
-            </table>
-        </div>
-    </div>
-</div>
+</table>
 
 <div class="modal fade modal" id="EmployeeModal">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="text-info modal-title">Add Employee</h1>
-                <button class="close text-danger" data-dismiss="modal">&times;</button>
+                <h1 class="text-info modal-title" id="employeeHeading">Add Employee</h1>
+                @* <button type="button" class="close text-danger" data-dismiss="modal"> &times; </button> *@
             </div>
             <div class="modal-body"></div>
             <form method="post">
-                <div class="form-group">
+                <div class="form-group" id="id">
                     <label>Employee Id</label>
                     <input type="text" class="form-control" id="EmpId" disabled="disabled" />
                 </div>
@@ -69,12 +63,20 @@
             </form>
             <div class="modal-footer">
                 <button class="btn btn-primary" onclick="AddEmployee();" id="AddEmployee">Save</button>
-                <button class="btn btn-warning" onclick="" style="display:none" id="btnUpdate">Update</button>
+                <button class="btn btn-warning" onclick="UpdateEmployee();" style="display:none" id="btnUpdate">Update</button>
                 <button class="btn btn-danger btn-default" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
 </div>
+
+
+       
+
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css" />  
+<script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
 
 @section scripts {
     <script src="~/js/datatablefile.js"></script>

@@ -6,6 +6,7 @@ namespace Assignment1.Service
     {
        Department AddDepartment(Department department);
         List<Department> GetAllDepartments();
-       
+        void DeleteDepartment(int id);
+
     }
 }

@@ -23,5 +23,27 @@ namespace Assignment1.Repository
         {
             return context.Departments.ToList();
         }
+
+        public void DeleteDepartment(int id)
+        {
+            var department = context.Departments.Find(id);
+            if (department != null)
+            {
+                // Set DeptId to null in associated Employee records
+                var employees = context.Employees.Where(e => e.DeptId == id).ToList();
+                foreach (var employee in employees)
+                {
+                    employee.DeptId = null;
+                }
+
+                // Remove department record
+                context.Departments.Remove(department);
+            }
+        }
+
+        public void Save()
+        {
+            context.SaveChanges();
+        }
     }
 }

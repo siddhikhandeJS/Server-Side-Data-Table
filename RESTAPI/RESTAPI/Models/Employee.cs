@@ -6,7 +6,7 @@ namespace RESTAPI.Models
     public class Employee
     {
         [Key]
-        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)] // Specifies auto-increment
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)] // Specifies auto-increment
         public int EmpId { get; set; }
 
         [Required]
